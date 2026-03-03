@@ -126,6 +126,12 @@ export const useStore = create<StoreType>((set) => ({
 }))
 ```
 
+## Styling Rules
+- Always use **Tailwind CSS** utility classes and **Chakra UI** components for styling
+- Do NOT write inline styles (`style={{ }}`) in HTML/JSX — always use Tailwind classes or Chakra UI props instead
+- Prefer Tailwind utility classes via `className` for layout and custom styling
+- Use Chakra UI component props (e.g., `colorScheme`, `size`, `variant`) for component-level theming
+
 ## Code Style Guidelines
 
 ### ESLint Key Rules
