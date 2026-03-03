@@ -3,6 +3,11 @@ import { BrowserLayout } from '@/layout'
 const Index = () => {
   const [messages, setMessages] = useState<{ text: string; type: 'user' | 'bot' }[]>([])
   const [input, setInput] = useState('')
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   const handleSend = () => {
     const trimmed = input.trim()
@@ -21,7 +26,7 @@ const Index = () => {
 
   return (
     <BrowserLayout url="chat.app">
-      <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4 min-h-[300px]">
+      <div className="flex h-[400px] flex-col gap-3 overflow-y-auto p-4">
         {messages.length === 0 && (
           <div className="flex flex-1 items-center justify-center text-[15px] tracking-wide text-[#b4a0d6]">
             開始聊天吧 ...
@@ -39,6 +44,7 @@ const Index = () => {
             {msg.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="mt-auto flex gap-2.5 border-t border-[rgba(183,148,244,0.15)] pt-4">
