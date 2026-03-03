@@ -16,10 +16,7 @@ export default defineConfig((config) => {
     base: '/',
     plugins: [
       tailwindcss(),
-      react({
-        // 啟用 Preact Signals 自動追蹤
-        babel: { plugins: [['module:@preact/signals-react-transform']] },
-      }),
+      react(),
       AutoImport({
         imports: [
           'react',
