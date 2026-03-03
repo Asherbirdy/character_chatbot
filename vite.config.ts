@@ -37,10 +37,6 @@ export default defineConfig((config) => {
       open: true,
       port: Number(env.VITE_PORT) || 3000,
     },
-    resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
-    // test: {
-    //   globals: true,
-    //   environment: 'jsdom',
-    // },
+    resolve: { alias: { '@': path.resolve(__dirname, 'src') } }
   }
 })
