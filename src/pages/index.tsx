@@ -1,9 +1,10 @@
 import { BrowserLayout } from '@/layout'
 
 const Index = () => {
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
   const [messages, setMessages] = useState<{ text: string; type: 'user' | 'bot' }[]>([])
   const [input, setInput] = useState('')
-  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
