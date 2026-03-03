@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 import AutoImport from 'unplugin-auto-import/vite'
 import Pages from 'vite-plugin-pages'
@@ -14,6 +15,7 @@ export default defineConfig((config) => {
   return {
     base: '/',
     plugins: [
+      tailwindcss(),
       react({
         // 啟用 Preact Signals 自動追蹤
         babel: { plugins: [['module:@preact/signals-react-transform']] },

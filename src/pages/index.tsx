@@ -21,30 +21,36 @@ const Index = () => {
 
   return (
     <BrowserLayout url="chat.app">
-      <div className="chat-area">
+      <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4 min-h-[300px]">
         {messages.length === 0 && (
-          <div className="chat-empty">開始聊天吧 ...</div>
+          <div className="flex flex-1 items-center justify-center text-[15px] tracking-wide text-[#b4a0d6]">
+            開始聊天吧 ...
+          </div>
         )}
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`chat-message chat-message--${msg.type}`}
+            className={
+              msg.type === 'user'
+                ? 'animate-fade-in max-w-[70%] self-end rounded-2xl rounded-br-sm bg-linear-to-br from-[#c4b5fd] to-[#b794f4] px-4 py-2.5 text-sm leading-relaxed text-white'
+                : 'animate-fade-in max-w-[70%] self-start rounded-2xl rounded-bl-sm bg-linear-to-br from-[#f3edff] to-[#ebe3fb] px-4 py-2.5 text-sm leading-relaxed text-[#553c9a]'
+            }
           >
             {msg.text}
           </div>
         ))}
       </div>
 
-      <div className="chat-input-bar">
+      <div className="mt-auto flex gap-2.5 border-t border-[rgba(183,148,244,0.15)] pt-4">
         <input
-          className="chat-input"
+          className="flex-1 rounded-xl border-[1.5px] border-[rgba(183,148,244,0.3)] bg-[rgba(250,247,255,0.8)] px-[18px] py-3 text-sm text-[#44337a] outline-none transition-all placeholder:text-[#c4b0e0] focus:border-[#b794f4] focus:shadow-[0_0_0_3px_rgba(183,148,244,0.15)]"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="輸入訊息..."
         />
         <button
-          className="chat-send-btn"
+          className="cursor-pointer whitespace-nowrap rounded-xl border-none bg-linear-to-br from-[#b794f4] to-[#9f7aea] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(159,122,234,0.35)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:hover:translate-y-0"
           onClick={handleSend}
           disabled={!input.trim()}
         >
